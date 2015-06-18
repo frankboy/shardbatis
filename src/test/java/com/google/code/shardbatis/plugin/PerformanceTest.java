@@ -57,7 +57,7 @@ public class PerformanceTest {
 					}
 				}
 				long end=System.currentTimeMillis();
-				System.out.println(Thread.currentThread().getId()+" :"+(end-start));
+				System.out.println(Thread.currentThread().getId()+" withplugin :"+(end-start));
 			}
 		}
 		for(int i=0;i<20;i++){
@@ -66,14 +66,14 @@ public class PerformanceTest {
 			tt.start();
 		}
 		
-		Thread.sleep(1000*60*20L);
+		Thread.sleep(1000*60L);
 	}
 	
 	/**
 	 * -server -XX:-PrintCompilation -Xmx512m -Xms512m -Xmn256m
 	 * @throws Exception
 	 */
-//	@Ignore
+	//@Ignore
 	@Test
 	public void testNoPlugin() throws Exception{
 		String resource = "MapperConfig_3.xml";
@@ -106,7 +106,7 @@ public class PerformanceTest {
 					}
 				}
 				long end=System.currentTimeMillis();
-				System.out.println(Thread.currentThread().getId()+" :"+(end-start));
+				System.out.println(Thread.currentThread().getId()+" withoutplugin :"+(end-start));
 			}
 		}
 		for(int i=0;i<20;i++){
@@ -115,7 +115,7 @@ public class PerformanceTest {
 			tt.start();
 		}
 		
-		Thread.sleep(1000*60*20L);
+		Thread.sleep(1000*60L);
 	}
 	
 	

@@ -1,22 +1,17 @@
-/**
- * 
- */
 package com.google.code.shardbatis.strategy.impl;
 
-import com.google.code.shardbatis.strategy.ShardStrategy;
+import net.sf.jsqlparser.schema.Table;
+
+import com.google.code.shardbatis.strategy.ProcessStrategy;
 
 /**
  * @author sean.he
  *
  */
-public class TestShardStrategyImpl implements ShardStrategy {
+public class TestShardStrategyImpl implements ProcessStrategy {
 
-	/* (non-Javadoc)
-	 * @see com.google.code.shardbatis.strategy.ShardStrategy#getTargetTableName(java.lang.String, java.lang.Object, java.lang.String)
-	 */
-	public String getTargetTableName(String baseTableName, Object params,
-			String mapperId) {
-		return baseTableName+"_xx";
+	public void processTable(Table table, Object params, String mapperId) {
+		 table.setName(table.getName()+"_xx");
 	}
 
 }

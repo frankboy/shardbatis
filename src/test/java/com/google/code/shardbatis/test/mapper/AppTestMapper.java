@@ -11,7 +11,7 @@ public interface AppTestMapper {
 	Integer insert(AppTestDO domain);
 
 	@Insert("insert into app_test (ID,CNT )values (#{id},#{cnt})")
-	@SelectKey(statement = "select seq_app_test_id.nextval from dual", 
+	@SelectKey(statement = "SELECT LAST_INSERT_ID() AS id ", 
 			keyProperty = "id", before = true, resultType = int.class)
 	Integer insert2(AppTestDO domain);
 	
@@ -21,7 +21,7 @@ public interface AppTestMapper {
 //	Integer insert3(AppTestDO domain);
 	
 	@Insert("insert into app_test (ID,CNT )values (#{id},#{cnt})")
-	@SelectKey(statement = "select seq_app_test_id.nextval from dual", 
+	@SelectKey(statement = "SELECT LAST_INSERT_ID() AS id", 
 			keyProperty = "id", before = true, resultType = int.class)
 	Integer insertNoShard(AppTestDO domain);
 	

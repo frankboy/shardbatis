@@ -1,23 +1,17 @@
 package com.google.code.shardbatis.builder;
 
-import java.io.InputStream;
-
-import org.apache.ibatis.io.Resources;
 import org.junit.Assert;
 import org.junit.Test;
-import org.xml.sax.SAXException;
 
-import com.google.code.shardbatis.strategy.ShardStrategy;
+import com.google.code.shardbatis.strategy.ProcessStrategy;
 
 
 public class ShardConfigParserTest {
 	@Test
 	public void testParse_1() throws Exception{
-		ShardConfigParser parser=new ShardConfigParser();
-		InputStream input= Resources.getResourceAsStream("test_config.xml");
-		ShardConfigHolder factory=parser.parse(input);
+		SqlProcessorConfigFactory factory=SqlProcessorConfigFactory.getInstance("test_config.xml");
 		
-		ShardStrategy strategy=factory.getStrategy("test_table1");
+		ProcessStrategy strategy=factory.getStrategy("test_table1");
 		Assert.assertNotNull(strategy);
 		
 		strategy=factory.getStrategy("test_table2");
@@ -31,15 +25,16 @@ public class ShardConfigParserTest {
 		
 		ret=factory.isParseId("parseId");
 		Assert.assertFalse(ret);
+		
+		// 正常情况下配置工厂只能处理一次，只有这里关闭了，下次测试才能重新解析文件
+		factory.close() ;
 	}
 	
 	@Test
 	public void testParse_2() throws Exception{
-		ShardConfigParser parser=new ShardConfigParser();
-		InputStream input= Resources.getResourceAsStream("test_config_2.xml");
-		ShardConfigHolder factory=parser.parse(input);
+		SqlProcessorConfigFactory factory=SqlProcessorConfigFactory.getInstance("test_config_2.xml");
 		
-		ShardStrategy strategy=factory.getStrategy("test_table1");
+		ProcessStrategy strategy=factory.getStrategy("test_table1");
 		Assert.assertNotNull(strategy);
 		
 		strategy=factory.getStrategy("test_table2");
@@ -68,14 +63,14 @@ public class ShardConfigParserTest {
 		
 		ret=factory.isParseId("xxxxxxx");
 		Assert.assertFalse(ret);
+		
+		factory.close();
 	}
 	
-	@Test(expected=SAXException.class)
-	public void testParseFail()throws Exception{
-		ShardConfigParser parser=new ShardConfigParser();
-		InputStream input= Resources.getResourceAsStream("error_config.xml");
-		parser.parse(input);
-		
+	@Test
+	public void testParseFail() throws Exception {
+		SqlProcessorConfigFactory factory=SqlProcessorConfigFactory.getInstance("error_config.xml");
 		Assert.fail();
+		factory.close();
 	}
 }
