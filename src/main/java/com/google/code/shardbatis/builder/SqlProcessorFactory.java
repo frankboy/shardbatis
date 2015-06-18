@@ -19,11 +19,11 @@ import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 
 import com.google.code.shardbatis.SqlProcessException;
-import com.google.code.shardbatis.converter.DeleteSqlProcessor;
-import com.google.code.shardbatis.converter.InsertSqlProcessor;
-import com.google.code.shardbatis.converter.SelectSqlProcessor;
-import com.google.code.shardbatis.converter.SqlProcessor;
-import com.google.code.shardbatis.converter.UpdateSqlProcessor;
+import com.google.code.shardbatis.processor.DeleteSqlProcessor;
+import com.google.code.shardbatis.processor.InsertSqlProcessor;
+import com.google.code.shardbatis.processor.SelectSqlProcessor;
+import com.google.code.shardbatis.processor.SqlProcessor;
+import com.google.code.shardbatis.processor.UpdateSqlProcessor;
 
 /**
  * 管理各种CRUD语句的Converter

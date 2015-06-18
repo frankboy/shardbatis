@@ -1,5 +1,5 @@
 
-package com.google.code.shardbatis.converter;
+package com.google.code.shardbatis.processor;
 
 import com.google.code.shardbatis.builder.SqlProcessorConfigFactory;
 

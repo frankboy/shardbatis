@@ -1,4 +1,4 @@
-package com.google.code.shardbatis.converter;
+package com.google.code.shardbatis.processor;
 
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.Statement;
